@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme variables ─── */
+@layer base {
+  :root {
+    --background: 240 15% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 240 12% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --primary: 265 90% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 90% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 5% 55%;
+
+    --accent: 330 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 265 90% 65%;
+    --radius: 0.75rem;
+
+    /* Fun neon glow vars */
+    --neon-purple: hsl(265 90% 65%);
+    --neon-blue: hsl(220 90% 60%);
+    --neon-pink: hsl(330 85% 60%);
+    --neon-coral: hsl(15 90% 60%);
+    --neon-green: hsl(150 80% 50%);
+    --neon-yellow: hsl(50 95% 60%);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(265 90% 65%),
+      hsl(220 90% 60%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(330 85% 60%),
+      hsl(15 90% 60%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(265 90% 65%),
+      hsl(330 85% 60%),
+      hsl(15 90% 60%)
+    );
+    --gradient-fun: linear-gradient(
+      135deg,
+      hsl(150 80% 50%),
+      hsl(220 90% 60%),
+      hsl(265 90% 65%)
+    );
+    --gradient-rainbow: linear-gradient(
+      90deg,
+      hsl(0 85% 60%),
+      hsl(50 95% 60%),
+      hsl(150 80% 50%),
+      hsl(220 90% 60%),
+      hsl(265 90% 65%),
+      hsl(330 85% 60%)
+    );
+
+    /* Glass */
+    --glass-bg: hsl(240 12% 10% / 0.6);
+    --glass-border: hsl(0 0% 100% / 0.08);
+
+    /* Shadows */
+    --shadow-glow-sm: 0 0 15px hsl(265 90% 65% / 0.2);
+    --shadow-glow-md: 0 0 30px hsl(265 90% 65% / 0.3);
+    --shadow-glow-lg:
+      0 4px 60px hsl(265 90% 65% / 0.3), 0 0 100px hsl(330 85% 60% / 0.15);
+    --shadow-neon:
+      0 0 5px var(--neon-purple), 0 0 20px var(--neon-purple),
+      0 0 40px hsl(265 90% 65% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "Space Grotesk", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::selection {
+    background: hsl(265 90% 65% / 0.3);
+    color: hsl(0 0% 100%);
+  }
+}
+
+/* ─── Utility classes ─── */
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: hsl(240 12% 10% / 0.8);
+    backdrop-filter: blur(30px);
+    border: 1px solid hsl(0 0% 100% / 0.1);
+  }
+
+  .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-fun {
+    background: var(--gradient-fun);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-rainbow {
+    background: var(--gradient-rainbow);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 6s ease infinite;
+  }
+
+  .glow-sm {
+    box-shadow: var(--shadow-glow-sm);
+  }
+  .glow-md {
+    box-shadow: var(--shadow-glow-md);
+  }
+  .glow-lg {
+    box-shadow: var(--shadow-glow-lg);
+  }
+
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+  }
+
+  .editor-font {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  /* Interactive 3D tilt on hover */
+  .hover-tilt {
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+  }
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+  }
+
+  /* Magnetic button effect */
+  .btn-magnetic {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .btn-magnetic:hover {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
+  .btn-magnetic:active {
+    transform: scale(0.95);
+  }
+
+  /* Rainbow border animation */
+  .rainbow-border {
+    position: relative;
+    z-index: 1;
+  }
+  .rainbow-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: var(--gradient-rainbow);
+    background-size: 400% 100%;
+    animation: gradient-shift 4s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .rainbow-border:hover::before {
+    opacity: 1;
+  }
+  .rainbow-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    z-index: -1;
+  }
+
+  /* Shimmer effect */
+  .shimmer-overlay {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(0 0% 100% / 0.05),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Emoji bounce */
+  .emoji-bounce {
+    display: inline-block;
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+}
+
+/* ─── Resume preview — crisp professional contrast ─── */
+.resume-preview {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #1a1a1a;
+  background: #ffffff;
+  line-height: 1.6;
+}
+.resume-preview h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.25rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+.resume-preview h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
+}
+.resume-preview h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+.resume-preview p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.resume-preview ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.resume-preview li {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.resume-preview strong {
+  font-weight: 700;
+}
+.resume-preview em {
+  font-style: italic;
+  color: #555;
+}
+.resume-preview a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+.resume-preview hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1rem 0;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(240 15% 8%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(240 10% 25%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(265 50% 45%);
+}
+
+/* ─── Cursor trail sparkle (applied via JS) ─── */
+.sparkle-cursor {
+  pointer-events: none;
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon-purple);
+  box-shadow:
+    0 0 6px var(--neon-purple),
+    0 0 12px var(--neon-pink);
+  animation: sparkle-fade 0.6s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes sparkle-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
