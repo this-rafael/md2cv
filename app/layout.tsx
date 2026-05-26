@@ -1,9 +1,12 @@
 import "../src/globals.css";
 
 export const metadata = {
-  title: "Curriculum Vinext — Craft Your Dream Resume",
+  title: "Curriculum — Craft Your Dream Resume",
   description:
     "Write in Markdown. Preview in real time. Export as PDF or DOCX. Fun, animated, delightful.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
