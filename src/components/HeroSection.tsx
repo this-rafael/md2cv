@@ -15,7 +15,7 @@ interface HeroSectionProps {
 
 const funPhrases = [
   "Crie seu currículo",
-  "Markdown → Currículo lindo",
+  "Markdown + Preview",
   "Exporte PDF & DOCX em 1 clique",
   "Simples e Rapido",
 ];
